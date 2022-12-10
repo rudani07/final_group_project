@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+  <!-- header -->
+  <%- include("layouts/header")-%>
+  <body id="gBody">
+    <!-- navbar1 -->
+    <%- include("layouts/navbar")-%>
+    <header class="masthead">
+      <div class="container position-elative px-4 px-lg-5">
+        <div class="row gx-4 gx-lg-5 justify-content-center">
+          <div class="col-md-10 col-lg-8 col-xl-7">
+            <div class="page-heading">
+              <form
+                class="row g-3 p-5 m-5 container-g"
+                action="/update"
+                method="POST"
+              >
+                <% if (drivePost != null && drivePost!=[]&& drivePost!="") { %>
+                <div class="col-12">
+                  <div class="col-md-12">
+                    <label for="firstname" class="form-label">First Name</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="firstname"
+                      name="firstname"
+                      value="<%= drivePost?.firstname %>"
+                    />
+                  </div>
+                  <div class="col-md-12">
+                    <label for="lastname" class="form-label">Last Name</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="lastname"
+                      name="lastname"
+                      value="<%= drivePost?.lastname %>"
+                    />
+                  </div>
+                  <div class="col-md-12">
+                    <label for="inputLicence" class="form-label"
+                      >Licence Number</label
+                    >
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="inputLicence"
+                      name="inputLicence"
+                      placeholder="XXXXX-XXXX-XXXX"
+                      value="<%= drivePost?.inputLicence %>"
+                    />
+                  </div>
+
+                  <div class="col-md-12">
+                    <label for="age" class="form-label">Age</label>
+                    <input
+                      type="number"
+                      class="form-control"
+                      id="age"
+                      name="age"
+                      value="<%= drivePost?.age %>"
+                    />
+                  </div>
+                  <div class="col-md-12">
+                    <label for="birthDate" class="form-label">Birth Date</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="birthDate"
+                      name="birthDate"
+                      value="<%= new
+                      Date(drivePost?.birthDate).toLocaleDateString() %>"
+                    />
+                  </div>
+                  <div class="col-md-12">
+                    <label for="inputMake4" class="form-label">Make</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="inputMake4"
+                      name="make"
+                      value="<%= drivePost?.car_Details?.make %>"
+                    />
+                  </div>
+                  <div class="col-md-12">
+                    <label for="inputModel4" class="form-label">Model</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="inputModel4"
+                      name="model"
+                      value="<%= drivePost?.car_Details?.model %>"
+                    />
+                  </div>
+
+                  <div class="col-md-12">
+                    <label for="inputYear" class="form-label">Year</label>
+                    <input
+                      type="number"
+                      class="form-control"
+                      id="inputYear"
+                      name="year"
+                      value="<%= drivePost?.car_Details?.year %>"
+                    />
+                  </div>
+                  <div class="col-md-12">
+                    <label for="inputPlatNumber" class="form-label"
+                      >Plat number</label
+                    >
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="inputPlatNumber"
+                      placeholder="XXXXX"
+                      name="numberPlate"
+                      value="<%= drivePost?.car_Details?.numberPlate %>"
+                    />
+                  </div>
+                </div>
+                <% } %>
+                <!-- <div class="col-12 text-center p-2">
+                  <button type="submit" class="btn">Submit</button>
+                </div> -->
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+    <!-- Main Content-->
+    <!-- <main class="mb-4"></main> -->
+    <!-- Footer-->
+    <%- include("layouts/footer")-%> <%- include("layouts/scripts")-%>
+  </body>
+</html>

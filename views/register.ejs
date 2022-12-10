@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <!-- header -->
+  <%- include("layouts/header")-%>
+  <body>
+    <!-- navbar -->
+    <%- include("layouts/navbar")-%>
+    <div class="d-flex p-5 m-5 loginBack">
+      <div class="container border m-2 p-5">
+        <h1 class="text-center mb-5">Registration form</h1>
+        <form class="row g-3" action="/signUp" method="POST">
+          <div class="col-md-12">
+            <label for="username" class="form-label">User Name</label>
+            <input
+              type="text"
+              class="form-control"
+              id="username"
+              name="username"
+            />
+          </div>
+          <div class="col-md-12">
+            <label for="password" class="form-label">Password</label>
+            <input
+              type="password"
+              class="form-control"
+              name="password"
+              id="password"
+            />
+          </div>
+          <div class="col-md-12">
+            <label for="repeatPassword" class="form-label"
+              >Confirm Password</label
+            >
+            <input
+              type="password"
+              class="form-control"
+              id="repeatPassword"
+              name="repeatPassword"
+            />
+          </div>
+          <% if(invalid.conPass) {%>
+          <div class="col-md-12">
+            <h6 style="color: red">
+              repeat password is not matching with password
+            </h6>
+          </div>
+          <% } %>
+          <div class="col-md-12">
+            <label for="inputType" class="form-label">User type</label>
+          </div>
+          <div class="col-md-12">
+            <select id="userType" class="form-control" name="userType">
+              <option name="driver" value="driver" selected>Driver</option>
+              <option name="examiner" value="examiner">Examiner</option>
+              <option name="admin" value="admin">Admin</option>
+            </select>
+          </div>
+
+          <div class="col-12 text-center mt-3">
+            <button type="submit" class="btn">Sign Up</button>
+          </div>
+        </form>
+      </div>
+    </div>
+    <%- include("layouts/footer")-%> <%- include("layouts/scripts")-%>
+  </body>
+</html>

@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+  <!-- header -->
+  <%- include("layouts/header")-%>
+  <body class="app-back">
+    <!-- navbar -->
+    <%- include("layouts/navbar")-%>
+
+    <main class="mb-4">
+      <div class="container px-4 px-lg-5">
+        <div class="row gx-4 gx-lg-5 justify-content-center">
+          <div class="col-md-10 col-lg-8 col-xl-7 my-5 py-5 container-g">
+            <div>
+              <div>
+                <h3 class="text-center">Examiner Page</h3>
+                <div>
+                  <% if(testType == null) {%>
+                  <form
+                    class="row g-3 text-center"
+                    action="/getDriversByType"
+                    method="GET"
+                  >
+                  <% }else if(testType != null &&drivers != null && driverDetails == null){ %> 
+                    <form
+                    class="row g-3 text-center"
+                    action="/getDriversByName"
+                    method="GET"
+                  >
+                  <% }else if(testType!= null && drivers != null && driverDetails != null){ %> 
+                    <form
+                    class="row g-3 text-center"
+                    action="/createDriverResult"
+                    method="POST"
+                  >
+                  <%}%>
+                  
+                    <div class="col-md-12 text-center mt-5">
+                      <h6 for="date" class="form-label">
+                        Select the test type of drivers
+                      </h6>
+                      <% if (testType != null) {%> 
+                      <select disable id="type" class="form-control mt-2" value="<%=testType%>" name="testType">
+                        <option value="gTest">G Test</option>
+                        <option value="g2Test">G2 Test</option>
+                      </select>
+                      <% }else{ %> 
+                        <select  id="type" class="form-control mt-2" name="testType">
+                            <option value="gTest">G Test</option>
+                            <option value="g2Test">G2 Test</option>
+                          </select>
+                          <%}%>
+                    </div>
+                    <% if(drivers != null ) {%> 
+                    <div class="col-md-12 text-center mt-5">
+                      <h6 for="date" class="form-label">Select the Driver</h6>
+                      <select  id="firstname" class="form-control mt-2" name="firstname">
+                        <% for(let i = 0;i<drivers.length;i++){ %>
+                              <option ><%=drivers[i].firstname%></option>
+                        <% } %> 
+                      </select>
+                    </div>
+                    <%} else if(testType != null && drivers == null){%>
+                        <div class="col-md-12 text-center mt-5">
+                            <h6 for="date" class="form-label">Select the Driver</h6>
+                            <select  id="firstname" class="form-control mt-2" name="firstname">
+                                <% for(let i = 0;i<drivers.length;i++){ %>
+                                      <option ><%=drivers[i].firstname%></option>
+                                <% } %> 
+                              </select>
+                          </div>
+                          <% } if(driverDetails != null){%> 
+
+                    <div class="col-md-12 text-center mt-5">
+                      <h4 for="date" class="form-label">Driver details</h4>
+                      <div class="col-md-12">
+                        <label for="inputMake4" class="form-label"
+                          >First Name</label
+                        >
+                        <input
+                          type="text"
+                          class="form-control"
+                          id="inputMake4"
+                          name="firstname"
+                          value=""
+                        />
+                      </div>
+                      <div class="col-md-12">
+                        <label for="inputMake4" class="form-label">Make</label>
+                        <input
+                          type="text"
+                          class="form-control"
+                          id="inputMake4"
+                          name="make"
+                          value=""
+                        />
+                      </div>
+                      <div class="col-md-12">
+                        <label for="inputModel4" class="form-label"
+                          >Model</label
+                        >
+                        <input
+                          type="text"
+                          class="form-control"
+                          id="inputModel4"
+                          name="model"
+                          value=""
+                        />
+                      </div>
+
+                      <div class="col-md-12">
+                        <label for="inputYear" class="form-label">Year</label>
+                        <input
+                          type="number"
+                          class="form-control"
+                          id="inputYear"
+                          name="year"
+                          value=""
+                        />
+                      </div>
+                      <div class="col-md-12">
+                        <label for="inputPlatNumber" class="form-label"
+                          >Plat number</label
+                        >
+                        <input
+                          type="text"
+                          class="form-control"
+                          id="inputPlatNumber"
+                          placeholder="XXXXX"
+                          name="numberPlate"
+                          value=""
+                        />
+                      </div>
+                      <div class="col-md-12 mt-5">
+                        <label for="inputComment" class="form-label"
+                          >Comment</label
+                        >
+                        <textarea
+                          type="text"
+                          class="form-control"
+                          id="comment"
+                          name="comment"
+                          value=""
+                        ></textarea>
+                      </div>
+                      <div class="col-md-12 mt-2">
+                        <small for="result" class="form-label">Result</small>
+                        <div class="col-md-12">
+                          <input
+                            type="radio"
+                            id="pass"
+                            name="result"
+                            value="pass"
+                          />
+                          <label for="pass">Pass</label>
+                        </div>
+                        <div class="col-md-12">
+                          <input
+                            type="radio"
+                            id="fail"
+                            name="result"
+                            value="fail"
+                          />
+                          <label for="fail">Fail</label>
+                        </div>
+                      </div>
+                    </div>
+                    <% } if(testType == null) {%>
+                        <div class="col-12 text-center mt-5">
+                            <button type="submit" class="btn">Select Type</button>
+                          </div>
+                        <% }else if(testType != null && drivers == null){ %> 
+                            <div class="col-12 text-center mt-5">
+                                <button type="submit" class="btn">Select Driver</button>
+                              </div>
+                        <% }else if(testType!= null && drivers != null && driverDetails == null){ %> 
+                            <div class="col-12 text-center mt-5">
+                                <button type="submit" class="btn">Submit</button>
+                              </div>
+                        <%}%>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+    <%- include("layouts/footer")-%> <%- include("layouts/scripts")-%>
+  </body>
+</html>

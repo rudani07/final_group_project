@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+  <!-- header -->
+  <%- include("layouts/header")-%>
+  <body class="app-back">
+    <!-- navbar -->
+    <%- include("layouts/navbar")-%>
+
+    <main class="mb-4 ">
+      <div class="container px-4 px-lg-5">
+        <div class="row gx-4 gx-lg-5 justify-content-center">
+          <div class="col-md-10 col-lg-8 col-xl-7 my-5 py-5 container-g">
+            <div>
+              <div>
+                <h3 class="text-center">Appointment Booking</h3>
+                <div>
+                  <% if(appointment != null){%>
+                  <form
+                    class="row g-3 text-center"
+                    action="/createAppointments"
+                    method="POST"
+                  >
+                  <div class="col-md-12 text-center mt-5" >
+                    <label for="date" class="form-label">Date</label>
+                    <input
+                    readonly
+                      type="date"
+                      class="form-control mt-2"
+                      id="date"
+                      name="date"
+                      value="<%= new Date(date).toISOString().split('T')[0] %>"
+                      min="<%=new Date().toISOString().split('T')[0]%>"
+                    />
+                  </div>
+                    <%} else{%>
+                      <form
+                    class="row g-3 text-center"
+                    action="/getAppointments"
+                    method="GET"
+                  >
+                  <div class="col-md-12 text-center mt-5">
+                    <label for="date" class="form-label">Date</label>
+                    <input
+                      type="date"
+                      placeholder="mm/dd/yyyy"
+                      class="form-control mt-2"
+                      id="date"
+                      name="date"
+                      required
+                      min="<%=new Date().toISOString().split('T')[0]%>"
+                    />
+                  </div>
+                  <% } %>
+                    
+                    <% if(appointment == null){ %>
+                    
+                    <div class="col-12 text-center mt-5">
+                      <button type="submit" class="btn">
+                        Submit
+                      </button>
+                    </div>
+                    <% } else {
+                      var timeslots = ["9:00","9:30","10:00","10:30","11:00","11:30","12:00","12:30","1:00","1:30","2:00"]%>
+                      <div class="col-md-12 text-center mt-5">
+                        <label for="time" class="form-label">Time</label>
+                        <select id="time" class="form-control mt-2" name="time">
+                          <% for(let i = 0;i<timeslots.length;i++){ 
+                              if(appointment.includes(timeslots[i])){
+                                %>
+                                <option class="bg-secondary text-white" disabled><%=timeslots[i]%></option>
+                              <%}else{%>
+                              <option name="<%=timeslots[i]%>"><%=timeslots[i]%></option>
+                          <% }} %> 
+                        </select>
+                      </div>
+                      <div class="col-12 text-center mt-5">
+                        <a href="/appointments">select another date</a>
+                      </div>
+                    <div class="col-12 text-center mt-5">
+                      <button type="submit" class="btn">
+                        Book
+                      </button>
+                    </div>
+                      
+                      <% }%>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+    <%- include("layouts/footer")-%> <%- include("layouts/scripts")-%>
+  </body>
+</html>

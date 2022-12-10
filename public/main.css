@@ -1,0 +1,81 @@
+#mainNav1 {
+  background-color: #464d53;
+}
+
+.collapse {
+  flex-grow: 0 !important;
+}
+
+.container a {
+  color: white;
+}
+
+.dashboardHeader {
+  color: white;
+  background-color: #464d53;
+}
+
+.dashImage {
+  background-image: url("./car_drive_high.jpg");
+  background-repeat: no-repeat;
+}
+.color-gray {
+  color: #051e33;
+}
+
+.navbar-brand {
+  padding: 10px;
+  background-color: white !important;
+  border-radius: 50px;
+  color: black !important;
+}
+
+.navbar-brand:hover {
+  background-color: #464d53 !important;
+  color: white !important;
+}
+
+a {
+  padding: 0px !important;
+  background-color: white !important;
+  border-radius: 20px;
+  color: black !important;
+}
+
+.nav-link:hover {
+  background-color: #464d53 !important;
+  color: white !important;
+}
+
+.loginBack {
+  background-color: #aadfef;
+}
+
+.btn {
+  background-color: #464d53 !important;
+  color: white !important;
+}
+.masthead {
+  background-image: url("./gPage.jpg");
+}
+
+.container-g {
+  background-color: white;
+  border-radius: 30px;
+}
+
+.g2-back {
+  background-image: url("./g2Page.jpg");
+}
+
+.ftr {
+  position: fixed;
+  width: 100%;
+  text-align: center;
+  bottom: 0;
+  background-color: white;
+}
+
+.app-back {
+  background-image: url("./appPage.jpg");
+}

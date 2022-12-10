@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+  <!-- header -->
+  <%- include("layouts/header")-%>
+  <body>
+    <!-- navbar -->
+    <%- include("layouts/navbar")-%>
+    <!-- <header
+      class="masthead"
+      style="background-image: url('assets/img/contact-bg.jpg')"
+    >
+      <div class="container position-relative px-4 px-lg-5">
+        <div class="row gx-4 gx-lg-5 justify-content-center">
+          <div class="col-md-10 col-lg-8 col-xl-7">
+            <div class="page-heading text-center my-5"></div>
+          </div>
+        </div>
+      </div>
+    </header> -->
+    <!-- Main Content-->
+    <main class="mb-4 g2-back">
+      <div class="container px-4 px-lg-5">
+        <div class="row gx-4 gx-lg-5 justify-content-center">
+          <div class="col-md-10 col-lg-8 col-xl-7 my-5 py-5 container-g">
+            <div>
+              <div>
+                <h3 class="text-center">Personal Information</h3>
+                <div>
+                  <% if(appointment != null && appointment.length > 0){%>
+                    <form class="row g-3" action="/update" method="POST">
+                      <input
+                        type="hidden" 
+                        id="testType"
+                        value="g2Test"
+                        name="testType"
+                      />
+                      <% } else{ %> 
+                        <form class="row g-3" action="/getAppointmentForDriver" method="GET">
+                          <% } %> 
+                    <div class="col-md-6">
+                      <label for="firstname" class="form-label"
+                        >First Name</label
+                      >
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="firstname"
+                        value="<%=data?.firstname%>"
+                        name="firstname"
+                      />
+                    </div>
+                    <div class="col-md-6">
+                      <label for="lastname" class="form-label">Last Name</label>
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="lastname"
+                        value="<%=data?.lastname%>"
+                        name="lastname"
+                      />
+                    </div>
+                    <div class="col-12">
+                      <label for="inputLicence" class="form-label"
+                        >Licence Number</label
+                      >
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="inputLicence"
+                        value="<%=data?.inputLicence%>"
+                        name="inputLicence"
+                        placeholder="XXXXX-XXXX-XXXX"
+                      />
+                    </div>
+                    <div class="col-12">
+                      <label for="sinNumber" class="form-label"
+                        >Sin Number</label
+                      >
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="sinNumber"
+                        value="<%=data?.sinNumber%>"
+                        name="sinNumber"
+                        placeholder="XXXXX-XXXX-XXXX"
+                      />
+                    </div>
+                    <div class="col-md-6">
+                      <label for="age" class="form-label">Age</label>
+                      <input
+                        type="number"
+                        class="form-control"
+                        id="age"
+                        value="<%=data?.age%>"
+                        name="age"
+                      />
+                    </div>
+                    <div class="col-md-6">
+                      <label for="birthDate" class="form-label"
+                        >Birth Date</label
+                      >
+                      <input
+                        type="date"
+                        class="form-control"
+                        id="birthDate"
+                        value="<%=new Date(data?.birthDate).toISOString().split('T')[0]%>"
+                        name="birthDate"
+                      />
+                    </div>
+                </div>
+              </div>
+              <div>
+                <h3 class="text-center my-5">Car Information</h3>
+                <div>
+                  <% if(data?.car_Details != undefined){ %> 
+                  <div class="row g-3">
+                    <div class="col-md-6">
+                      <label for="inputMake4" class="form-label">Make</label>
+                      <input type="text" class="form-control" id="inputMake4" value="<%=data?.car_Details?.make%>"
+                      name="make" />
+                    </div>
+                    <div class="col-md-6">
+                      <label for="inputModel4" class="form-label">Model</label>
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="inputModel4"
+                        value="<%=data?.car_Details?.model%>"
+                        name="model"
+                      />
+                    </div>
+
+                    <div class="col-md-6">
+                      <label for="inputYear" class="form-label">Year</label>
+                      <input
+                        type="number"
+                        class="form-control"
+                        id="inputYear"
+                        value="<%=data?.car_Details?.year%>"
+                        name="year"
+                      />
+                    </div>
+                    <div class="col-md-6">
+                      <label for="inputPlatNumber" class="form-label"
+                        >Plat number</label
+                      >
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="inputPlatNumber"
+                        placeholder="XXXXX"
+                        value="<%=data?.car_Details?.numberPlate%>"
+                        name="numberPlate"
+                      />
+                    </div>
+                  </div>
+                  <% } else {%> 
+                    <div class="row g-3">
+                      <div class="col-md-6">
+                        <label for="inputMake4" class="form-label">Make</label>
+                        <input type="text" class="form-control" id="inputMake4" value="<%=data?.make%>"
+                        name="make" />
+                      </div>
+                      <div class="col-md-6">
+                        <label for="inputModel4" class="form-label">Model</label>
+                        <input
+                          type="text"
+                          class="form-control"
+                          id="inputModel4"
+                          value="<%=data?.model%>"
+                          name="model"
+                        />
+                      </div>
+  
+                      <div class="col-md-6">
+                        <label for="inputYear" class="form-label">Year</label>
+                        <input
+                          type="number"
+                          class="form-control"
+                          id="inputYear"
+                          value="<%=data?.year%>"
+                          name="year"
+                        />
+                      </div>
+                      <div class="col-md-6">
+                        <label for="inputPlatNumber" class="form-label"
+                          >Plat number</label
+                        >
+                        <input
+                          type="text"
+                          class="form-control"
+                          id="inputPlatNumber"
+                          placeholder="XXXXX"
+                          value="<%=data?.numberPlate%>"
+                          name="numberPlate"
+                        />
+                      </div>
+                    </div>
+                    <% } if(data?.date == null || data?.time == null){%> 
+                  <h3 class="text-center mt-5">Appointment Booking</h3>
+                  <div>
+                    <%if(appointment != null){%>
+                    <div class="col-md-12 text-center mt-5" >
+                      <label for="date" class="form-label">Date</label>
+                      <input
+                        type="date"
+                        class="form-control mt-2"
+                        id="date"
+                        name="date"
+                        value="<%= new Date(date).toISOString().split('T')[0]%>"
+                        min="<%=new Date().toISOString().split('T')[0]%>"
+                      />
+                    </div>
+                    <div class="col-md-12 text-center mt-5">
+                        <label for="time" class="form-label">Time</label>
+                        <%if(appointment != ""){%>
+                        <select id="time" class="form-control mt-2" name="time">
+                          <% for(let i = 0;i<appointment.length;i++){%>
+                            <option ><%=appointment[i]%></option>
+                          <% }%></select><%}else{ %> 
+                            <h2>Sorry,there are no slots available for this date</h2>
+                            <%}%>
+                        
+                      </div>
+                    <div class="col-12 text-center mt-5">
+                      <button type="submit" name="submit" value="gType" class="btn">
+                        Submit
+                      </button>
+                    </div>
+                      <%} else{%>
+                    <div class="col-md-12 text-center mt-5">
+                      <label for="date" class="form-label">Date</label>
+                      <input
+                        type="date"
+                        class="form-control mt-2"
+                        id="date"
+                        name="date"
+                        min="<%=new Date().toISOString().split('T')[0]%>"
+                      />
+                    </div>
+                    <div class="col-12 text-center mt-5">
+                      <button type="submit" class="btn">
+                        Enter Date
+                      </button>
+                    </div>
+                    <% } %>
+                    </div>
+                  <% }else if(data?.result == "pass"){ %> 
+                    <div class="col-12 text-center mt-5">
+                      <h3>you have successfully passed this exam</h3>
+                    </div> 
+                    <% } else if(data?.result == "fail"){%> 
+                    <div class="col-12 text-center mt-5">
+                      <h3>Sorry, you didnt pass the exam, better luck next time</h3>
+                    </div>
+                    <%}else{ %> 
+                      <div class="col-12 text-center mt-5">
+                        <h3>You have already booked an appointment</h3>
+                      </div> 
+                      <% } %> 
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+    <%- include("layouts/footer")-%> <%- include("layouts/scripts")-%>
+  </body>
+</html>

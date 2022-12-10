@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <!-- header -->
+  <%- include("layouts/header")-%>
+  <body>
+    <!-- navbar -->
+    <%- include("layouts/navbar")-%>
+    <div class="d-flex p-5 m-5 loginBack">
+      <div class="container border m-2 p-5">
+        <h1 class="text-center mb-5">Login form</h1>
+
+        <form action="/signIn" method="POST">
+          <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label"> Username</label>
+            <input
+              type="text"
+              class="form-control"
+              id="username"
+              name="username"
+              aria-describedby="emailHelp"
+            />
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label"
+              >Password</label
+            >
+            <input
+              type="password"
+              class="form-control"
+              id="password"
+              name="password"
+            />
+          </div>
+          <% if(invalid.invalPass) {%>
+          <div class="col-md-12">
+            <h6 style="color: red">Information is invalid.</h6>
+          </div>
+          <% } %>
+          <div class="col-12 text-center">
+            <button type="submit" class="btn">Sign In</button>
+          </div>
+        </form>
+      </div>
+    </div>
+    <%- include("layouts/footer")-%> <%- include("layouts/scripts")-%>
+  </body>
+</html>
