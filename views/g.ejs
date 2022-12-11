@@ -28,13 +28,9 @@
                 <div>
                   <% if(appointment != null && appointment.length > 0){%>
                     <form class="row g-3" action="/update" method="POST">
-                      <input
-                        id="testType"
-                        value="gTest"
-                        name="testType"
-                      />
+                      <input type="hidden" name="testType" value="gTest"/>
                       <% } else{ %> 
-                        <form class="row g-3" action="/getAppointmentForDriver" method="GET">
+                        <form class="row g-3" action="/getAppointmentForDriverG" method="GET">
                           <% } %> 
                     <div class="col-md-6">
                       <label for="firstname" class="form-label"
@@ -210,6 +206,7 @@
                         min="<%=new Date().toISOString().split('T')[0]%>"
                       />
                     </div>
+                    
                     <div class="col-md-12 text-center mt-5">
                         <label for="time" class="form-label">Time</label>
                         <%if(appointment != ""){%>
@@ -230,6 +227,7 @@
                     <div class="col-md-12 text-center mt-5">
                       <label for="date" class="form-label">Date</label>
                       <input
+                      required
                         type="date"
                         class="form-control mt-2"
                         id="date"

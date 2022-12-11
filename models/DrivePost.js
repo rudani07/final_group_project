@@ -15,6 +15,7 @@ const DriveSchema = new Schema({
   password: String,
   testType: String,
   result: String,
+  comment: String,
   date: { type: String, default: null },
   time: { type: String, default: null },
   firstTime: { type: Boolean, default: true },

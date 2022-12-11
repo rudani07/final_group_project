@@ -1,9 +1,21 @@
-// const Appointment = require("../models/AppointmentPost");
-module.exports = async (req, res) => {
+const DrivePost = require("../models/DrivePost");
+
+module.exports = async (req, res, error) => {
   loggedIn = req.session.userId;
-  res.render("examiner", {
-    testType: null,
-    drivers: null,
-    driverDetails: null,
-  });
+
+  console.log(req.body);
+  await DrivePost.findOneAndUpdate(
+    { firstname: req.body.firstname },
+    {
+      ...req.body,
+      car_Details: {
+        make: req.body.make,
+        model: req.body.model,
+        year: req.body.year,
+        numberPlate: req.body.numberPlate,
+      },
+    }
+  );
+
+  res.redirect("/");
 };

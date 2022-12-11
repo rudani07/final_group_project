@@ -39,9 +39,14 @@
                         Select the test type of drivers
                       </h6>
                       <% if (testType != null) {%> 
-                      <select disable id="type" class="form-control mt-2" value="<%=testType%>" name="testType">
-                        <option value="gTest">G Test</option>
-                        <option value="g2Test">G2 Test</option>
+                      <select disable id="type" class="form-control mt-2" name="testType">
+                        <% if(testType == 'gTest') {%> 
+                        <option value="gTest" selected>G Test</option>
+                        <option value="g2Test" >G2 Test</option>
+                        <%}else{%>
+                        <option  value="gTest" >G Test</option>
+                        <option  value="g2Test" selected>G2 Test</option>
+                        <%}%>
                       </select>
                       <% }else{ %> 
                         <select  id="type" class="form-control mt-2" name="testType">
@@ -54,9 +59,12 @@
                     <div class="col-md-12 text-center mt-5">
                       <h6 for="date" class="form-label">Select the Driver</h6>
                       <select  id="firstname" class="form-control mt-2" name="firstname">
-                        <% for(let i = 0;i<drivers.length;i++){ %>
+                        <% for(let i = 0;i<drivers.length;i++){ 
+                          if(drivers[i].firstname == driverDetails?.firstname){%>
+                              <option selected><%=drivers[i].firstname%></option>
+                              <%} else{%>
                               <option ><%=drivers[i].firstname%></option>
-                        <% } %> 
+                        <% }} %> 
                       </select>
                     </div>
                     <%} else if(testType != null && drivers == null){%>
@@ -81,7 +89,8 @@
                           class="form-control"
                           id="inputMake4"
                           name="firstname"
-                          value=""
+                          disabled 
+                          value="<%=driverDetails?.firstname%>"
                         />
                       </div>
                       <div class="col-md-12">
@@ -91,7 +100,8 @@
                           class="form-control"
                           id="inputMake4"
                           name="make"
-                          value=""
+                          disabled 
+                          value="<%=driverDetails?.car_Details?.make%>"
                         />
                       </div>
                       <div class="col-md-12">
@@ -103,7 +113,8 @@
                           class="form-control"
                           id="inputModel4"
                           name="model"
-                          value=""
+                          disabled 
+                          value="<%=driverDetails?.car_Details?.model%>"
                         />
                       </div>
 
@@ -114,7 +125,8 @@
                           class="form-control"
                           id="inputYear"
                           name="year"
-                          value=""
+                          disabled 
+                          value="<%=driverDetails?.car_Details?.year%>"
                         />
                       </div>
                       <div class="col-md-12">
@@ -127,7 +139,8 @@
                           id="inputPlatNumber"
                           placeholder="XXXXX"
                           name="numberPlate"
-                          value=""
+                          disabled 
+                          value="<%=driverDetails?.car_Details?.numberPlate%>"
                         />
                       </div>
                       <div class="col-md-12 mt-5">
@@ -139,7 +152,6 @@
                           class="form-control"
                           id="comment"
                           name="comment"
-                          value=""
                         ></textarea>
                       </div>
                       <div class="col-md-12 mt-2">
@@ -168,11 +180,11 @@
                         <div class="col-12 text-center mt-5">
                             <button type="submit" class="btn">Select Type</button>
                           </div>
-                        <% }else if(testType != null && drivers == null){ %> 
+                        <% }else if(testType != null && drivers != null && driverDetails == null){ %> 
                             <div class="col-12 text-center mt-5">
                                 <button type="submit" class="btn">Select Driver</button>
                               </div>
-                        <% }else if(testType!= null && drivers != null && driverDetails == null){ %> 
+                        <% }else if(testType!= null && drivers != null && driverDetails != null){ %> 
                             <div class="col-12 text-center mt-5">
                                 <button type="submit" class="btn">Submit</button>
                               </div>

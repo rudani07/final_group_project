@@ -1,3 +1,4 @@
+require("dotenv").config();
 const express = require("express");
 const path = require("path");
 const ejs = require("ejs");
@@ -11,7 +12,8 @@ const getDriversByTypeController = require("./controllers/getDriversByType");
 const getDriversByNameController = require("./controllers/getDriversByName");
 const createDriverResultController = require("./controllers/createDriverResult");
 const getAllAppointmentsController = require("./controllers/getAllAppointments");
-const getAppointmentsForDriverController = require("./controllers/getAppointmentForDriver");
+const getAppointmentsForDriverGController = require("./controllers/getAppointmentForDriverg");
+const getAppointmentsForDriverG2Controller = require("./controllers/getAppointmentForDriverg2");
 
 const createAppointmentsController = require("./controllers/createAppointment");
 const postG2Request = require("./controllers/postG2");
@@ -53,6 +55,10 @@ app.set("view engine", "ejs");
 
 const port = 4001;
 
+// mongoose.connect(
+//   "mongodb+srv://vaibhav:vaibhav@cluster0.tmlxcea.mongodb.net/?retryWrites=true&w=majority",
+//   { useNewUrlParser: true }
+// );
 mongoose.connect(process.env.MONGO_URL, { useNewUrlParser: true });
 
 app.get("/", homeController);
@@ -69,7 +75,7 @@ app.get("/getDriversByType", examinerMiddleware, getDriversByTypeController);
 
 app.get("/getDriversByName", examinerMiddleware, getDriversByNameController);
 
-app.get(
+app.post(
   "/createDriverResult",
   examinerMiddleware,
   createDriverResultController
@@ -80,9 +86,9 @@ app.post("/createAppointments", adminMiddleware, createAppointmentsController);
 app.get("/getAppointments", adminMiddleware, getAllAppointmentsController);
 
 app.get(
-  "/getAppointmentForDriver",
+  "/getAppointmentForDriverG2",
   authMiddleware,
-  getAppointmentsForDriverController
+  getAppointmentsForDriverGController
 );
 
 app.post("/g2", authMiddleware, postG2Request);

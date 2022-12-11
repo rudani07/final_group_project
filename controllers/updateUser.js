@@ -2,6 +2,7 @@ const DrivePost = require("../models/DrivePost");
 const AppointmentPost = require("../models/AppointmentPost");
 
 module.exports = async (req, res, error) => {
+  console.log("pppppppppppp");
   loggedIn = req.session.userId;
 
   const dateFor = req.body.date;
