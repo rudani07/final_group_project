@@ -88,7 +88,7 @@ app.get("/getAppointments", adminMiddleware, getAllAppointmentsController);
 app.get(
   "/getAppointmentForDriverG2",
   authMiddleware,
-  getAppointmentsForDriverGController
+  getAppointmentsForDriverG2Controller
 );
 
 app.post("/g2", authMiddleware, postG2Request);

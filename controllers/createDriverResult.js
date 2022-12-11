@@ -3,7 +3,7 @@ const DrivePost = require("../models/DrivePost");
 module.exports = async (req, res, error) => {
   loggedIn = req.session.userId;
 
-  console.log(req.body);
+  console.log(req);
   await DrivePost.findOneAndUpdate(
     { firstname: req.body.firstname },
     {
