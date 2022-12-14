@@ -12,6 +12,11 @@ module.exports = async (req, res, error) => {
       userType: req.body.userType,
     });
   } else {
+    req.flash("registerFail", "repeat password is not matching with password");
+    res.render("register", {
+      invalid: invalid,
+      message: req.flash("registerFail"),
+    });
   }
   invalid.conPass = false;
   res.render("login", { invalid });

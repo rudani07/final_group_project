@@ -10,8 +10,8 @@ module.exports = async (req, res) => {
   // check account found and verify password
   if (!account || !bcrypt.compareSync(req.body.password, account.password)) {
     // authentication failed
-
-    res.render("login", { invalid });
+    req.flash("loginFail", "Information is invalid.");
+    res.render("login", { invalid: invalid, message: req.flash("loginFail") });
   } else {
     // authentication successful
     req.session.userId = account._id;
