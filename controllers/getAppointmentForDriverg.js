@@ -1,6 +1,5 @@
 const Appointment = require("../models/AppointmentPost");
 module.exports = async (req, res) => {
-  console.log("bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb");
   loggedIn = req.session.userId;
   const dateFor = req.query.date;
 

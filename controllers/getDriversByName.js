@@ -5,8 +5,6 @@ module.exports = async (req, res) => {
   const driverDetails = await DrivePost.find({
     firstname: req.query.firstname,
   });
-  console.log("driverDetails");
-  console.log(driverDetails);
 
   res.render("examiner", {
     testType: req.query.testType,

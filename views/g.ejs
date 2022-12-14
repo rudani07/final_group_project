@@ -37,6 +37,7 @@
                         >First Name</label
                       >
                       <input
+                      required
                         type="text"
                         class="form-control"
                         id="firstname"
@@ -47,6 +48,7 @@
                     <div class="col-md-6">
                       <label for="lastname" class="form-label">Last Name</label>
                       <input
+                      required
                         type="text"
                         class="form-control"
                         id="lastname"
@@ -59,6 +61,7 @@
                         >Licence Number</label
                       >
                       <input
+                      required
                         type="text"
                         class="form-control"
                         id="inputLicence"
@@ -72,6 +75,7 @@
                         >Sin Number</label
                       >
                       <input
+                      required
                         type="text"
                         class="form-control"
                         id="sinNumber"
@@ -83,6 +87,7 @@
                     <div class="col-md-6">
                       <label for="age" class="form-label">Age</label>
                       <input
+                      required
                         type="number"
                         class="form-control"
                         id="age"
@@ -95,6 +100,7 @@
                         >Birth Date</label
                       >
                       <input
+                      required
                         type="date"
                         class="form-control"
                         id="birthDate"
@@ -111,12 +117,12 @@
                   <div class="row g-3">
                     <div class="col-md-6">
                       <label for="inputMake4" class="form-label">Make</label>
-                      <input type="text" class="form-control" id="inputMake4" value="<%=data?.car_Details?.make%>"
+                      <input required type="text" class="form-control" id="inputMake4" value="<%=data?.car_Details?.make%>"
                       name="make" />
                     </div>
                     <div class="col-md-6">
                       <label for="inputModel4" class="form-label">Model</label>
-                      <input
+                      <input required
                         type="text"
                         class="form-control"
                         id="inputModel4"
@@ -127,7 +133,7 @@
 
                     <div class="col-md-6">
                       <label for="inputYear" class="form-label">Year</label>
-                      <input
+                      <input required
                         type="number"
                         class="form-control"
                         id="inputYear"
@@ -139,7 +145,7 @@
                       <label for="inputPlatNumber" class="form-label"
                         >Plat number</label
                       >
-                      <input
+                      <input required
                         type="text"
                         class="form-control"
                         id="inputPlatNumber"
@@ -153,12 +159,12 @@
                     <div class="row g-3">
                       <div class="col-md-6">
                         <label for="inputMake4" class="form-label">Make</label>
-                        <input type="text" class="form-control" id="inputMake4" value="<%=data?.make%>"
+                        <input required type="text" class="form-control" id="inputMake4" value="<%=data?.make%>"
                         name="make" />
                       </div>
                       <div class="col-md-6">
                         <label for="inputModel4" class="form-label">Model</label>
-                        <input
+                        <input required
                           type="text"
                           class="form-control"
                           id="inputModel4"
@@ -169,7 +175,7 @@
   
                       <div class="col-md-6">
                         <label for="inputYear" class="form-label">Year</label>
-                        <input
+                        <input required
                           type="number"
                           class="form-control"
                           id="inputYear"
@@ -181,7 +187,7 @@
                         <label for="inputPlatNumber" class="form-label"
                           >Plat number</label
                         >
-                        <input
+                        <input required
                           type="text"
                           class="form-control"
                           id="inputPlatNumber"
@@ -197,7 +203,7 @@
                     <%if(appointment != null){%>
                     <div class="col-md-12 text-center mt-5" >
                       <label for="date" class="form-label">Date</label>
-                      <input
+                      <input required
                         type="date"
                         class="form-control mt-2"
                         id="date"
@@ -243,10 +249,30 @@
                     <% } %>
                     </div>
                     <% }else if(data?.result == "pass"){ %> 
+                      <div class="col-md-12 mt-5 text-center">
+                        <label for="inputComment" class="form-label text-center">Comment</label>
+                        <input disabled
+                          type="text"
+                          class="form-control"
+                          id="inputComment"
+                          value="<%=data?.comment%>"
+                          name="comment"
+                        />
+                      </div>
                       <div class="col-12 text-center mt-5">
                         <h3>you have successfully passed this exam</h3>
                       </div> 
                       <% } else if(data?.result == "fail"){%> 
+                        <div class="col-md-12 mt-5 text-center">
+                          <label for="inputComment" class="form-label ">Comment</label>
+                          <input disabled
+                            type="text"
+                            class="form-control"
+                            id="inputComment"
+                            value="<%=data?.comment%>"
+                            name="comment"
+                          />
+                        </div>
                       <div class="col-12 text-center mt-5">
                         <h3>Sorry, you didnt pass the exam, better luck next time</h3>
                       </div>

@@ -2,27 +2,22 @@ const DrivePost = require("../models/DrivePost");
 const AppointmentPost = require("../models/AppointmentPost");
 
 module.exports = async (req, res, error) => {
-  console.log("pppppppppppp");
-  console.log(req);
   loggedIn = req.session.userId;
-
   const dateFor = req.body.date;
-
-  const [year, day, month] = dateFor.split("-");
+  const [year, month, day] = dateFor.split("-");
 
   const date = [
-    day.toString().padStart(2, "0"),
     month.toString().padStart(2, "0"),
+    day.toString().padStart(2, "0"),
     year,
   ].join("-");
-  const appointment = await AppointmentPost.findOneAndUpdate(
+
+  await AppointmentPost.findOneAndUpdate(
     { time: req.body.time, date: date },
     {
       isTimeSlotAvailable: false,
     }
   );
-  console.log("jjjjj");
-  console.log(req.body);
   await DrivePost.findOneAndUpdate(
     { _id: req.session.userId },
     {

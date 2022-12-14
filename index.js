@@ -2,6 +2,7 @@ require("dotenv").config();
 const express = require("express");
 const path = require("path");
 const ejs = require("ejs");
+const flash = require("connect-flash");
 const mongoose = require("mongoose");
 const homeController = require("./controllers/home");
 const getGController = require("./controllers/getG");
@@ -19,6 +20,7 @@ const createAppointmentsController = require("./controllers/createAppointment");
 const postG2Request = require("./controllers/postG2");
 const findUser = require("./controllers/findUser");
 
+const qualifiedController = require("./controllers/qualified");
 const updateUser = require("./controllers/updateUser");
 const loginController = require("./controllers/login");
 const registerController = require("./controllers/register");
@@ -34,7 +36,7 @@ global.loggedIn = null;
 global.typeOfUser = null;
 
 const app = express();
-
+app.use(flash());
 app.use(express.json());
 app.use("*", (req, res, next) => {
   if (req.session) {
@@ -91,6 +93,12 @@ app.get(
   getAppointmentsForDriverG2Controller
 );
 
+app.get(
+  "/getAppointmentForDriverG",
+  authMiddleware,
+  getAppointmentsForDriverGController
+);
+
 app.post("/g2", authMiddleware, postG2Request);
 
 app.get("/find", authMiddleware, findUser);
@@ -100,6 +108,8 @@ app.post("/update", authMiddleware, updateUser);
 app.get("/login", loginController);
 
 app.get("/register", registerController);
+
+app.get("/qualified", adminMiddleware, qualifiedController);
 
 app.post("/signUp", redirectIfAuthenticatedMiddleware, signUpController);
 

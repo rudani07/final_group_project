@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <!-- header -->
+  <%- include("layouts/header")-%>
+  <body>
+    <!-- navbar -->
+    <%- include("layouts/navbar")-%>
+    <div class="d-flex p-5 m-5 loginBack">
+      <div class="container border m-2 p-5">
+        <h1 class="text-center mb-5">Quelified Students</h1>
+        <form class="row g-3" action="/signUp" method="POST">
+          <div class="col-12 text-center mt-3">
+            <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">First Name</th>
+                    <th scope="col">Last Name</th>
+                    <th scope="col">Driver Type</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <% for(let j=0;j<data.length;j++){ %> 
+                  <tr>
+                    <th scope="row"><%= j %></th>
+                    <td><%=data[j].firstname%> </td>
+                    <td><%=data[j].lastname%> </td>
+                    <td><%=data[j].testType%> </td> 
+                  </tr>
+                  <% } %> 
+                </tbody>
+              </table>
+            <button type="submit" class="btn">Send to make licence</button>
+          </div>
+        </form>
+      </div>
+    </div>
+    <%- include("layouts/footer")-%> <%- include("layouts/scripts")-%>
+  </body>
+</html>
