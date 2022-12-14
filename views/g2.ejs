@@ -26,7 +26,7 @@
               <div>
                 <h3 class="text-center">Personal Information</h3>
                 <div>
-                  <% if(appointment != null ){%>
+                  <% if(appointment != null && appointment.length > 0 ){%>
                     <form class="row g-3" action="/update" method="POST">
                       <input type="hidden" name="testType" value="g2Test"/>
                       <% } else{ %> 
